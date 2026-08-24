@@ -2,7 +2,15 @@
 @source "../src";
 @import "tw-animate-css";
 
+@font-face {
+  font-family: "Alhreef Body";
+  src: url("/__l5e/assets-v1/17fe90c6-120e-4357-b5f0-6387a1210400/ip1.ttf") format("truetype");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
+
 
 /*
  * Design system definition.
@@ -27,7 +35,8 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
   --font-display: "Cairo", system-ui, sans-serif;
-  --font-sans: "Tajawal", system-ui, sans-serif;
+  --font-sans: "Alhreef Body", "Cairo", system-ui, sans-serif;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
