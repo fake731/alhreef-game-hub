@@ -4,9 +4,12 @@ import { PRODUCTS, whatsappLink } from "@/lib/store-data";
 import { useCart } from "@/lib/cart";
 import { toast } from "sonner";
 import { WhatsappIcon } from "./icons";
+import { useCartUI } from "@/lib/cart-ui";
 
-export function Products({ onOpenCart }: { onOpenCart: () => void }) {
+export function Products({ onOpenCart }: { onOpenCart?: () => void }) {
   const { add } = useCart();
+  const { openCart } = useCartUI();
+  const open = onOpenCart ?? openCart;
 
   return (
     <section id="devices" className="section-pad">
@@ -29,9 +32,11 @@ export function Products({ onOpenCart }: { onOpenCart: () => void }) {
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                 />
-                <span className="absolute top-3 start-3 rounded-full bg-[image:var(--gradient-gold)] px-3 py-1 text-xs font-bold text-gold-foreground">
-                  {p.condition}
-                </span>
+                {p.condition && (
+                  <span className="absolute top-3 start-3 rounded-full bg-[image:var(--gradient-gold)] px-3 py-1 text-xs font-bold text-gold-foreground">
+                    {p.condition}
+                  </span>
+                )}
               </div>
 
               <div className="flex flex-1 flex-col p-5">
@@ -68,7 +73,7 @@ export function Products({ onOpenCart }: { onOpenCart: () => void }) {
                       add(p.id);
                       toast.success("تمت الإضافة إلى السلة", {
                         description: p.name,
-                        action: { label: "عرض السلة", onClick: onOpenCart },
+                        action: { label: "عرض السلة", onClick: open },
                       });
                     }}
                   >

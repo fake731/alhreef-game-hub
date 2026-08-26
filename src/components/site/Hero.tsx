@@ -1,4 +1,5 @@
-import { ShieldCheck, Truck, Gamepad2 } from "lucide-react";
+import { ShieldCheck, Truck, Gamepad2, Gamepad, Cable } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { LOGO_URL, whatsappLink } from "@/lib/store-data";
 import { WhatsappIcon } from "./icons";
@@ -26,7 +27,7 @@ export function Hero() {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild variant="hero" size="xl">
-              <a href="#devices">تصفح الأجهزة</a>
+              <Link to="/1">تصفح الأجهزة</Link>
             </Button>
             <Button asChild variant="whatsapp" size="xl">
               <a
@@ -40,11 +41,13 @@ export function Hero() {
             </Button>
           </div>
 
-          <dl className="mt-10 grid max-w-lg grid-cols-3 gap-3">
+          <dl className="mt-10 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-3">
             {[
               { icon: ShieldCheck, k: "كفالة سنة", v: "على الأجهزة" },
               { icon: Gamepad2, k: "200 لعبة", v: "مع كل جهاز" },
-              { icon: Truck, k: "توصيل", v: "لكل المملكة" },
+              { icon: Truck, k: "توصيل", v: "لكل المملكة بـ 3 د.أ" },
+              { icon: Gamepad, k: "بيجي مع يد", v: "يد تحكم أصلية" },
+              { icon: Cable, k: "بيجي كل أسلاكه", v: "كيبلات كاملة" },
             ].map(({ icon: Icon, k, v }) => (
               <div key={k} className="rounded-xl border border-border bg-surface/70 p-3 text-center">
                 <Icon className="mx-auto h-5 w-5 text-accent" />
