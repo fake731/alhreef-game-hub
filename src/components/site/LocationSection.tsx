@@ -1,11 +1,11 @@
-import { Clock, MapPin, Navigation } from "lucide-react";
+import { useState } from "react";
+import { Clock, MapPin, Moon, Navigation, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ADDRESS, LAT, LNG, MAP_LINK } from "@/lib/store-data";
-
-const bbox = `${LNG - 0.004}%2C${LAT - 0.0025}%2C${LNG + 0.004}%2C${LAT + 0.0025}`;
-const EMBED = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${LAT}%2C${LNG}`;
+import { ADDRESS, DIRECTIONS_LINK, LAT, LNG, MAP_EMBED, MAP_LINK } from "@/lib/store-data";
 
 export function LocationSection() {
+  const [dark, setDark] = useState(true);
+
   return (
     <section id="location" className="section-pad">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
@@ -23,6 +23,9 @@ export function LocationSection() {
                 <div className="min-w-0">
                   <p className="font-bold">العنوان</p>
                   <p className="text-sm text-muted-foreground">{ADDRESS}</p>
+                  <p className="mt-1 text-xs text-muted-foreground" dir="ltr">
+                    {LAT.toFixed(6)}, {LNG.toFixed(6)}
+                  </p>
                 </div>
               </li>
               <li className="flex items-start gap-3 rounded-xl border border-border bg-surface p-4">
@@ -34,20 +37,42 @@ export function LocationSection() {
               </li>
             </ul>
 
-            <Button asChild variant="hero" size="lg" className="mt-6">
-              <a href={MAP_LINK} target="_blank" rel="noopener noreferrer">
-                <Navigation className="h-4 w-4" />
-                فتح الموقع في الخريطة
-              </a>
-            </Button>
+            <div className="mt-6 flex flex-col gap-2 sm:flex-row">
+              <Button asChild variant="hero" size="lg" className="w-full sm:w-auto">
+                <a href={DIRECTIONS_LINK} target="_blank" rel="noopener noreferrer">
+                  <Navigation className="h-4 w-4" />
+                  الحصول على اتجاهات
+                </a>
+              </Button>
+              <Button asChild variant="subtle" size="lg" className="w-full sm:w-auto">
+                <a href={MAP_LINK} target="_blank" rel="noopener noreferrer">
+                  <MapPin className="h-4 w-4" />
+                  فتح في خرائط جوجل
+                </a>
+              </Button>
+            </div>
           </div>
 
           <div className="overflow-hidden rounded-2xl border border-border shadow-[var(--shadow-card)]">
+            <div className="flex items-center justify-between gap-3 border-b border-border bg-surface px-4 py-3">
+              <p className="text-sm font-bold">خرائط جوجل — الحريف ستور</p>
+              <button
+                type="button"
+                onClick={() => setDark((v) => !v)}
+                aria-label={dark ? "تفعيل الوضع النهاري للخريطة" : "تفعيل الوضع الليلي للخريطة"}
+                className="inline-flex items-center gap-2 rounded-lg border border-border bg-surface-2 px-3 py-2 text-xs font-bold transition-colors hover:border-primary"
+              >
+                {dark ? <Sun className="h-4 w-4 text-accent" /> : <Moon className="h-4 w-4 text-accent" />}
+                {dark ? "وضع نهاري" : "وضع ليلي"}
+              </button>
+            </div>
             <iframe
-              title="موقع الحريف ستور على الخريطة"
-              src={EMBED}
+              title="موقع الحريف ستور على خرائط جوجل"
+              src={MAP_EMBED}
               loading="lazy"
-              className="h-[380px] w-full lg:h-full lg:min-h-[440px]"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="h-[360px] w-full transition-[filter] duration-500 lg:h-[calc(100%-57px)] lg:min-h-[420px]"
+              style={dark ? { filter: "invert(0.92) hue-rotate(180deg) contrast(0.9) saturate(0.85)" } : undefined}
             />
           </div>
         </div>
