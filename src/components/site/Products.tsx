@@ -4,20 +4,25 @@ import { PRODUCTS, whatsappLink } from "@/lib/store-data";
 import { useCart } from "@/lib/cart";
 import { toast } from "sonner";
 import { WhatsappIcon } from "./icons";
+import { useCartUI } from "@/lib/cart-ui";
 
-export function Products({ onOpenCart }: { onOpenCart: () => void }) {
+export function Products({ onOpenCart, hideHeader }: { onOpenCart?: () => void; hideHeader?: boolean }) {
   const { add } = useCart();
+  const { openCart } = useCartUI();
+  const open = onOpenCart ?? openCart;
 
   return (
     <section id="devices" className="section-pad">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <header className="max-w-2xl">
+        {!hideHeader && (
+<header className="max-w-2xl">
           <p className="text-sm font-bold text-accent">الأجهزة</p>
           <h2 className="mt-2 text-3xl sm:text-4xl">أجهزة بلايستيشن جاهزة للتشغيل</h2>
           <p className="mt-3 text-muted-foreground">
             كل جهاز يصلك مفحوصًا وجاهزًا مع يد التحكم وكيبلاته وباقة ألعاب — والتوصيل على المتجر.
           </p>
         </header>
+        )}
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {PRODUCTS.map((p) => (
@@ -29,9 +34,11 @@ export function Products({ onOpenCart }: { onOpenCart: () => void }) {
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                 />
-                <span className="absolute top-3 start-3 rounded-full bg-[image:var(--gradient-gold)] px-3 py-1 text-xs font-bold text-gold-foreground">
-                  {p.condition}
-                </span>
+                {p.condition && (
+                  <span className="absolute top-3 start-3 rounded-full bg-[image:var(--gradient-gold)] px-3 py-1 text-xs font-bold text-gold-foreground">
+                    {p.condition}
+                  </span>
+                )}
               </div>
 
               <div className="flex flex-1 flex-col p-5">
@@ -68,7 +75,7 @@ export function Products({ onOpenCart }: { onOpenCart: () => void }) {
                       add(p.id);
                       toast.success("تمت الإضافة إلى السلة", {
                         description: p.name,
-                        action: { label: "عرض السلة", onClick: onOpenCart },
+                        action: { label: "عرض السلة", onClick: open },
                       });
                     }}
                   >

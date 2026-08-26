@@ -10,17 +10,19 @@ import {
 } from "@/lib/store-data";
 import { FacebookIcon, InstagramIcon, WhatsappIcon } from "./icons";
 
-export function Contact() {
+export function Contact({ hideHeader }: { hideHeader?: boolean }) {
   return (
     <section id="contact" className="section-pad">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <header className="max-w-2xl">
+        {!hideHeader && (
+<header className="max-w-2xl">
           <p className="text-sm font-bold text-accent">تواصل معنا</p>
           <h2 className="mt-2 text-3xl sm:text-4xl">جاهزون للرد على استفسارك</h2>
           <p className="mt-3 text-muted-foreground">
             راسلنا على واتساب أو تابعنا على مواقع التواصل لمتابعة آخر الأجهزة والعروض.
           </p>
         </header>
+        )}
 
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           <a

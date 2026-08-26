@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { ChevronLeft, ChevronRight, Quote, X } from "lucide-react";
-import { REVIEW_IMAGES } from "@/lib/store-data";
+import { ChevronLeft, ChevronRight, Quote, Star, X } from "lucide-react";
+import { REVIEW_IMAGES, TESTIMONIALS } from "@/lib/store-data";
 
-export function Reviews() {
+export function Reviews({ hideHeader }: { hideHeader?: boolean }) {
   const [emblaRef, embla] = useEmblaCarousel({ direction: "rtl", align: "start", loop: true });
   const [selected, setSelected] = useState(0);
   const [lightbox, setLightbox] = useState<string | null>(null);
@@ -39,8 +39,12 @@ export function Reviews() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <header className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
           <div className="min-w-0">
-            <p className="text-sm font-bold text-accent">المراجعات</p>
-            <h2 className="mt-2 text-3xl sm:text-4xl">ماذا يقول عملاؤنا؟</h2>
+            {!hideHeader && (
+              <>
+                <p className="text-sm font-bold text-accent">المراجعات</p>
+                <h2 className="mt-2 text-3xl sm:text-4xl">ماذا يقول عملاؤنا؟</h2>
+              </>
+            )}
             <p className="mt-3 max-w-xl text-muted-foreground">
               لقطات حقيقية من رسائل وتعليقات زبائن الحريف ستور. اضغط على أي صورة لتكبيرها.
             </p>
@@ -100,6 +104,30 @@ export function Reviews() {
                 selected === i ? "w-7 bg-primary" : "w-2 bg-border"
               }`}
             />
+          ))}
+        </div>
+
+        <div className="mt-14 grid gap-4 md:grid-cols-2">
+          {TESTIMONIALS.map((t) => (
+            <article key={t.name} className="card-elevated rounded-2xl p-5">
+              <div className="flex items-center gap-3">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[image:var(--gradient-gold)] text-lg font-extrabold text-gold-foreground">
+                  {t.name.trim().charAt(0)}
+                </span>
+                <div className="min-w-0">
+                  <p className="truncate font-bold">{t.name}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {t.meta} · {t.when}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-3 flex gap-1 text-accent" aria-label="تقييم 5 من 5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-current" />
+                ))}
+              </div>
+              <p className="mt-3 text-sm leading-8 text-muted-foreground">{t.text}</p>
+            </article>
           ))}
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageHeader } from "@/components/site/SiteLayout";
+import { SiteLayout, PageHeader } from "@/components/site/SiteLayout";
 import { Products } from "@/components/site/Products";
 
 const TITLE = "1. الأجهزة | الحريف ستور";
@@ -22,14 +22,14 @@ export const Route = createFileRoute("/1")({
 
 function DevicesPage() {
   return (
-    <>
+    <SiteLayout>
       <PageHeader
         no={1}
         eyebrow="الأجهزة"
         title="أجهزة بلايستيشن جاهزة للتشغيل"
         desc="أجهزة PS5 و PS4 و PS3 مفحوصة بالكامل. أضِف ما تريد إلى السلة وأرسل طلبك عبر واتساب خلال ثوانٍ."
       />
-      <Products />
-    </>
+      <Products hideHeader />
+    </SiteLayout>
   );
 }

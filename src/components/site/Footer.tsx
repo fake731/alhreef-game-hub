@@ -1,14 +1,15 @@
+import { Link } from "@tanstack/react-router";
 import { ADDRESS, FACEBOOK_URL, INSTAGRAM_URL, LOGO_URL, WHATSAPP_DISPLAY, whatsappLink } from "@/lib/store-data";
 import { FacebookIcon, InstagramIcon, WhatsappIcon } from "./icons";
 
 const LINKS = [
-  { href: "#devices", label: "الأجهزة" },
-  { href: "#services", label: "خدماتنا" },
-  { href: "#location", label: "موقعنا" },
-  { href: "#reviews", label: "المراجعات" },
-  { href: "#delivery", label: "التوصيل" },
-  { href: "#contact", label: "تواصل معنا" },
-];
+  { to: "/1", label: "الأجهزة" },
+  { to: "/2", label: "خدماتنا" },
+  { to: "/3", label: "موقعنا" },
+  { to: "/4", label: "المراجعات" },
+  { to: "/5", label: "التوصيل" },
+  { to: "/6", label: "تواصل معنا" },
+] as const;
 
 export function Footer() {
   return (
@@ -65,10 +66,10 @@ export function Footer() {
           <h2 className="text-base">روابط سريعة</h2>
           <ul className="mt-4 space-y-2">
             {LINKS.map((l) => (
-              <li key={l.href}>
-                <a href={l.href} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+              <li key={l.to}>
+                <Link to={l.to} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                   {l.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
