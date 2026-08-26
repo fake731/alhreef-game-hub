@@ -14,13 +14,15 @@ export function Products({ onOpenCart }: { onOpenCart?: () => void }) {
   return (
     <section id="devices" className="section-pad">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <header className="max-w-2xl">
+        {!hideHeader && (
+<header className="max-w-2xl">
           <p className="text-sm font-bold text-accent">الأجهزة</p>
           <h2 className="mt-2 text-3xl sm:text-4xl">أجهزة بلايستيشن جاهزة للتشغيل</h2>
           <p className="mt-3 text-muted-foreground">
             كل جهاز يصلك مفحوصًا وجاهزًا مع يد التحكم وكيبلاته وباقة ألعاب — والتوصيل على المتجر.
           </p>
         </header>
+        )}
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {PRODUCTS.map((p) => (
