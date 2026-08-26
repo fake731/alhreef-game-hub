@@ -24,7 +24,7 @@ export const LAT = 31.964498795875844;
 export const LNG = 35.846608773544006;
 export const MAP_LINK = `https://www.google.com/maps/search/?api=1&query=${LAT},${LNG}`;
 export const DIRECTIONS_LINK = `https://www.google.com/maps/dir/?api=1&destination=${LAT},${LNG}`;
-export const MAP_EMBED = `https://maps.google.com/maps?q=${LAT},${LNG}&z=16&hl=ar&output=embed`;
+export const MAP_EMBED = `https://maps.google.com/maps?q=${LAT},${LNG}&z=17&hl=ar&output=embed`;
 
 export const DELIVERY_FEE = 3;
 
@@ -47,7 +47,7 @@ export type Product = {
   subtitle: string;
   price: number;
   image: string;
-  condition: string;
+  condition?: string;
   features: string[];
 };
 
@@ -58,7 +58,6 @@ export const PRODUCTS: Product[] = [
     subtitle: "PS 5 SLIM DISC",
     price: 460,
     image: ps5SlimDisc.url,
-    condition: "جديد",
     features: ["مكفول سنة", "مع يد", "مع أسلاكه"],
   },
   {
@@ -67,7 +66,6 @@ export const PRODUCTS: Product[] = [
     subtitle: "PS 5 SLIM DIGITAL",
     price: 440,
     image: ps5SlimDigital.url,
-    condition: "جديد",
     features: ["مكفول سنة", "مع يد", "مع أسلاكه"],
   },
   {
@@ -76,7 +74,6 @@ export const PRODUCTS: Product[] = [
     subtitle: "PS 5 FAT DISC",
     price: 430,
     image: ps5FatDisc.url,
-    condition: "جديد",
     features: ["مكفول سنة", "مع يد", "مع أسلاكه"],
   },
   {
@@ -85,7 +82,6 @@ export const PRODUCTS: Product[] = [
     subtitle: "PS 5 FAT DIGITAL",
     price: 400,
     image: ps5FatDigital.url,
-    condition: "جديد",
     features: ["مكفول سنة", "مع يد", "مع أسلاكه"],
   },
   {
@@ -94,7 +90,6 @@ export const PRODUCTS: Product[] = [
     subtitle: "PS 4 PRO",
     price: 170,
     image: ps4Pro.url,
-    condition: "مكفول",
     features: ["200 لعبة", "مكفول سنة", "مع يد", "مع كيبلاته"],
   },
   {
@@ -103,7 +98,6 @@ export const PRODUCTS: Product[] = [
     subtitle: "PS 4 SLIM",
     price: 135,
     image: ps4Slim.url,
-    condition: "مكفول",
     features: ["200 لعبة", "مكفول سنة", "مع يد", "مع كيبلاته"],
   },
   {
@@ -112,7 +106,6 @@ export const PRODUCTS: Product[] = [
     subtitle: "PS 4 FAT",
     price: 115,
     image: ps4Fat.url,
-    condition: "مكفول",
     features: ["200 لعبة", "مكفول سنة", "مع يد", "مع كيبلاته"],
   },
   {
@@ -142,6 +135,12 @@ export type Testimonial = {
 };
 
 export const TESTIMONIALS: Testimonial[] = [
+  {
+    name: "أدهم العثامنة",
+    meta: "مراجعتان (2)",
+    when: "قبل شهرين",
+    text: "الشباب فهمانين جدا وبنصحوك بلي بناسبك بعد تجربتي الشخصية بنصح وبشدة مع انهم بغلبو شوي لبين ما يردو عليك بس لما رحت وشفت عذرتهم الله يباركلهم على السمعة الطيبة والبضاعة الي جد نضيفة وخلي الزبون يجيب زبون",
+  },
   {
     name: "Jeaner",
     meta: "3 مراجعات · صورتان (2)",
