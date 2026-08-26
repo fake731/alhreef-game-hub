@@ -23,7 +23,7 @@ function Page6() {
   return (
     <SiteLayout>
       <PageHeader no={6} eyebrow="تواصل معنا" title="نحن بانتظار رسالتك" desc="راسلنا على واتساب في أي وقت أو تابع جديدنا على إنستغرام وفيسبوك." />
-      <Contact />
+      <Contact hideHeader />
     </SiteLayout>
   );
 }

@@ -23,7 +23,7 @@ function Page3() {
   return (
     <SiteLayout>
       <PageHeader no={3} eyebrow="موقعنا" title="تعال زورنا في المحل" desc="خريطة جوجل تفاعلية بوضع ليلي وزر للحصول على اتجاهات الوصول مباشرة." />
-      <LocationSection />
+      <LocationSection hideHeader />
     </SiteLayout>
   );
 }

@@ -23,7 +23,7 @@ function Page4() {
   return (
     <SiteLayout>
       <PageHeader no={4} eyebrow="المراجعات" title="آراء زبائننا" desc="تعليقات حقيقية من زبائن الحريف ستور، مع لقطات من رسائلهم وتقييماتهم." />
-      <Reviews />
+      <Reviews hideHeader />
     </SiteLayout>
   );
 }

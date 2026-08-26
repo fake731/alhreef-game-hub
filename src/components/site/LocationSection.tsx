@@ -3,7 +3,7 @@ import { Clock, MapPin, Moon, Navigation, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ADDRESS, DIRECTIONS_LINK, LAT, LNG, MAP_EMBED, MAP_LINK } from "@/lib/store-data";
 
-export function LocationSection() {
+export function LocationSection({ hideHeader }: { hideHeader?: boolean }) {
   const [dark, setDark] = useState(true);
 
   return (
@@ -11,11 +11,15 @@ export function LocationSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <p className="text-sm font-bold text-accent">موقعنا</p>
-            <h2 className="mt-2 text-3xl sm:text-4xl">زورنا في المحل</h2>
-            <p className="mt-3 leading-8 text-muted-foreground">
-              نستقبلك في المحل لتجربة الأجهزة على أرض الواقع قبل الشراء.
-            </p>
+            {!hideHeader && (
+              <>
+                <p className="text-sm font-bold text-accent">موقعنا</p>
+                <h2 className="mt-2 text-3xl sm:text-4xl">زورنا في المحل</h2>
+                <p className="mt-3 leading-8 text-muted-foreground">
+                  نستقبلك في المحل لتجربة الأجهزة على أرض الواقع قبل الشراء.
+                </p>
+              </>
+            )}
 
             <ul className="mt-6 space-y-3">
               <li className="flex items-start gap-3 rounded-xl border border-border bg-surface p-4">

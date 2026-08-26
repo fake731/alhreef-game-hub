@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { WhatsappIcon } from "./icons";
 import { useCartUI } from "@/lib/cart-ui";
 
-export function Products({ onOpenCart }: { onOpenCart?: () => void }) {
+export function Products({ onOpenCart, hideHeader }: { onOpenCart?: () => void; hideHeader?: boolean }) {
   const { add } = useCart();
   const { openCart } = useCartUI();
   const open = onOpenCart ?? openCart;

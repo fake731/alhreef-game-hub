@@ -23,7 +23,7 @@ function Page5() {
   return (
     <SiteLayout>
       <PageHeader no={5} eyebrow="التوصيل" title="توصيل لكل الأردن بـ 3 دنانير" desc="نوصل طلبك إلى باب بيتك في جميع محافظات المملكة برسوم ثابتة 3 دنانير." />
-      <Delivery />
+      <Delivery hideHeader />
     </SiteLayout>
   );
 }

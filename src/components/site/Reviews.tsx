@@ -3,7 +3,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight, Quote, Star, X } from "lucide-react";
 import { REVIEW_IMAGES, TESTIMONIALS } from "@/lib/store-data";
 
-export function Reviews() {
+export function Reviews({ hideHeader }: { hideHeader?: boolean }) {
   const [emblaRef, embla] = useEmblaCarousel({ direction: "rtl", align: "start", loop: true });
   const [selected, setSelected] = useState(0);
   const [lightbox, setLightbox] = useState<string | null>(null);
@@ -39,8 +39,12 @@ export function Reviews() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <header className="grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
           <div className="min-w-0">
-            <p className="text-sm font-bold text-accent">المراجعات</p>
-            <h2 className="mt-2 text-3xl sm:text-4xl">ماذا يقول عملاؤنا؟</h2>
+            {!hideHeader && (
+              <>
+                <p className="text-sm font-bold text-accent">المراجعات</p>
+                <h2 className="mt-2 text-3xl sm:text-4xl">ماذا يقول عملاؤنا؟</h2>
+              </>
+            )}
             <p className="mt-3 max-w-xl text-muted-foreground">
               لقطات حقيقية من رسائل وتعليقات زبائن الحريف ستور. اضغط على أي صورة لتكبيرها.
             </p>

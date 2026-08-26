@@ -29,7 +29,7 @@ function DevicesPage() {
         title="أجهزة بلايستيشن جاهزة للتشغيل"
         desc="أجهزة PS5 و PS4 و PS3 مفحوصة بالكامل. أضِف ما تريد إلى السلة وأرسل طلبك عبر واتساب خلال ثوانٍ."
       />
-      <Products />
+      <Products hideHeader />
     </SiteLayout>
   );
 }
