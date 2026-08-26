@@ -8,17 +8,19 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart";
-import { ADDRESS, whatsappLink } from "@/lib/store-data";
+import { ADDRESS, DELIVERY_FEE, whatsappLink } from "@/lib/store-data";
 import { WhatsappIcon } from "./icons";
 
 export function CartSheet({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) {
   const { items, total, count, setQty, remove, clear } = useCart();
 
+  const grandTotal = total + DELIVERY_FEE;
+
   const orderMessage = () => {
     const lines = items
       .map((i, idx) => `${idx + 1}) ${i.product.name} (${i.product.subtitle}) × ${i.qty} = ${i.qty * i.product.price} د.أ`)
       .join("\n");
-    return `مرحبًا الحريف ستور 👋\nأريد إتمام الطلب التالي:\n\n${lines}\n\nعدد القطع: ${count}\nالإجمالي: ${total} د.أ\n\nأرجو تزويدي بتفاصيل التوصيل. (${ADDRESS})`;
+    return `مرحبًا الحريف ستور 👋\nأريد إتمام الطلب التالي:\n\n${lines}\n\nعدد القطع: ${count}\nمجموع الأجهزة: ${total} د.أ\nرسوم التوصيل: ${DELIVERY_FEE} د.أ\nالإجمالي النهائي: ${grandTotal} د.أ\n\nأرجو تزويدي بتفاصيل التوصيل. (${ADDRESS})`;
   };
 
   return (
@@ -97,9 +99,19 @@ export function CartSheet({ open, onOpenChange }: { open: boolean; onOpenChange:
             </ul>
 
             <div className="space-y-3 border-t border-border p-5">
-              <div className="flex items-center justify-between text-lg font-extrabold">
-                <span>الإجمالي</span>
-                <span className="text-accent">{total} د.أ</span>
+              <div className="space-y-2 rounded-xl border border-border bg-surface p-4">
+                <div className="flex items-center justify-between text-sm text-muted-foreground">
+                  <span>مجموع الأجهزة</span>
+                  <span className="font-bold text-foreground">{total} د.أ</span>
+                </div>
+                <div className="flex items-center justify-between text-sm text-muted-foreground">
+                  <span>التوصيل لكل الأردن</span>
+                  <span className="font-bold text-foreground">{DELIVERY_FEE} د.أ</span>
+                </div>
+                <div className="flex items-center justify-between border-t border-border pt-2 text-lg font-extrabold">
+                  <span>الإجمالي</span>
+                  <span className="text-accent">{grandTotal} د.أ</span>
+                </div>
               </div>
               <Button asChild variant="whatsapp" size="xl" className="w-full">
                 <a href={whatsappLink(orderMessage())} target="_blank" rel="noopener noreferrer">
