@@ -1,4 +1,5 @@
-import { Minus, Plus, ShoppingCart, Trash2 } from "lucide-react";
+import { useState } from "react";
+import { Crosshair, MapPin, Minus, Plus, ShoppingCart, Trash2 } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -8,20 +9,34 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart";
-import { ADDRESS, DELIVERY_FEE, whatsappLink } from "@/lib/store-data";
+import { DELIVERY_FEE, whatsappLink } from "@/lib/store-data";
+import { buildOrderMessage } from "@/lib/order-message";
 import { WhatsappIcon } from "./icons";
 
 export function CartSheet({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) {
-  const { items, total, count, setQty, remove, clear } = useCart();
+  const { items, total, setQty, remove, clear } = useCart();
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [coords, setCoords] = useState("");
+  const [locating, setLocating] = useState(false);
 
   const grandTotal = total + DELIVERY_FEE;
 
-  const orderMessage = () => {
-    const lines = items
-      .map((i, idx) => `${idx + 1}) ${i.product.name} (${i.product.subtitle}) × ${i.qty} = ${i.qty * i.product.price} د.أ`)
-      .join("\n");
-    return `مرحبًا الحريف ستور 👋\nأريد إتمام الطلب التالي:\n\n${lines}\n\nعدد القطع: ${count}\nمجموع الأجهزة: ${total} د.أ\nرسوم التوصيل: ${DELIVERY_FEE} د.أ\nالإجمالي النهائي: ${grandTotal} د.أ\n\nأرجو تزويدي بتفاصيل التوصيل. (${ADDRESS})`;
+  const orderMessage = () => buildOrderMessage(items, { name, address, coords });
+
+  const useMyLocation = () => {
+    if (typeof navigator === "undefined" || !navigator.geolocation) return;
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setCoords(`${pos.coords.latitude.toFixed(6)}, ${pos.coords.longitude.toFixed(6)}`);
+        setLocating(false);
+      },
+      () => setLocating(false),
+      { enableHighAccuracy: true, timeout: 10000 },
+    );
   };
+
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
