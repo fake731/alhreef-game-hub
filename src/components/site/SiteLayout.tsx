@@ -4,6 +4,7 @@ import { CartUIContext } from "@/lib/cart-ui";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { CartSheet } from "./CartSheet";
+import { FloatingWhatsapp } from "./FloatingWhatsapp";
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   const [cartOpen, setCartOpen] = useState(false);
@@ -15,10 +16,12 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <main className="min-h-[70vh]">{children}</main>
         <Footer />
         <CartSheet open={cartOpen} onOpenChange={setCartOpen} />
+        <FloatingWhatsapp />
       </CartUIContext.Provider>
     </CartProvider>
   );
 }
+
 
 export function PageHeader({
   no,
