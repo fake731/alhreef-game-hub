@@ -1,4 +1,5 @@
-import { Minus, Plus, ShoppingCart, Trash2 } from "lucide-react";
+import { useState } from "react";
+import { Crosshair, MapPin, Minus, Plus, ShoppingCart, Trash2 } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -8,20 +9,34 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart";
-import { ADDRESS, DELIVERY_FEE, whatsappLink } from "@/lib/store-data";
+import { DELIVERY_FEE, whatsappLink } from "@/lib/store-data";
+import { buildOrderMessage } from "@/lib/order-message";
 import { WhatsappIcon } from "./icons";
 
 export function CartSheet({ open, onOpenChange }: { open: boolean; onOpenChange: (v: boolean) => void }) {
-  const { items, total, count, setQty, remove, clear } = useCart();
+  const { items, total, setQty, remove, clear } = useCart();
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [coords, setCoords] = useState("");
+  const [locating, setLocating] = useState(false);
 
   const grandTotal = total + DELIVERY_FEE;
 
-  const orderMessage = () => {
-    const lines = items
-      .map((i, idx) => `${idx + 1}) ${i.product.name} (${i.product.subtitle}) × ${i.qty} = ${i.qty * i.product.price} د.أ`)
-      .join("\n");
-    return `مرحبًا الحريف ستور 👋\nأريد إتمام الطلب التالي:\n\n${lines}\n\nعدد القطع: ${count}\nمجموع الأجهزة: ${total} د.أ\nرسوم التوصيل: ${DELIVERY_FEE} د.أ\nالإجمالي النهائي: ${grandTotal} د.أ\n\nأرجو تزويدي بتفاصيل التوصيل. (${ADDRESS})`;
+  const orderMessage = () => buildOrderMessage(items, { name, address, coords });
+
+  const useMyLocation = () => {
+    if (typeof navigator === "undefined" || !navigator.geolocation) return;
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setCoords(`${pos.coords.latitude.toFixed(6)}, ${pos.coords.longitude.toFixed(6)}`);
+        setLocating(false);
+      },
+      () => setLocating(false),
+      { enableHighAccuracy: true, timeout: 10000 },
+    );
   };
+
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -98,8 +113,50 @@ export function CartSheet({ open, onOpenChange }: { open: boolean; onOpenChange:
               ))}
             </ul>
 
-            <div className="space-y-3 border-t border-border p-5">
+            <div className="max-h-[58vh] space-y-3 overflow-y-auto border-t border-border p-5">
+              <div className="space-y-3 rounded-xl border border-border bg-surface p-4">
+                <p className="flex items-center gap-2 text-sm font-bold">
+                  <MapPin className="h-4 w-4 text-accent" />
+                  تفاصيل التوصيل إلى بيتك
+                </p>
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="الاسم الكامل"
+                  className="h-11 w-full rounded-lg border border-border bg-surface-2 px-3 text-sm outline-none focus:border-primary"
+                />
+                <textarea
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  rows={3}
+                  placeholder="الوصف الدقيق للمنزل (المحافظة، المنطقة، الشارع، رقم البناية، أقرب معلم...)"
+                  className="w-full rounded-lg border border-border bg-surface-2 p-3 text-sm leading-7 outline-none focus:border-primary"
+                />
+                <div className="flex gap-2">
+                  <input
+                    value={coords}
+                    onChange={(e) => setCoords(e.target.value)}
+                    dir="ltr"
+                    placeholder="إحداثيات المنزل: 31.9644, 35.8466"
+                    className="h-11 min-w-0 flex-1 rounded-lg border border-border bg-surface-2 px-3 text-sm outline-none focus:border-primary"
+                  />
+                  <button
+                    type="button"
+                    onClick={useMyLocation}
+                    aria-label="استخدام موقعي الحالي"
+                    className="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-border bg-surface-2 transition-colors hover:border-primary disabled:opacity-60"
+                    disabled={locating}
+                  >
+                    <Crosshair className={`h-4 w-4 text-accent ${locating ? "animate-spin" : ""}`} />
+                  </button>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  تُرسل هذه التفاصيل مع طلبك تلقائيًا في رسالة واتساب.
+                </p>
+              </div>
+
               <div className="space-y-2 rounded-xl border border-border bg-surface p-4">
+
                 <div className="flex items-center justify-between text-sm text-muted-foreground">
                   <span>مجموع الأجهزة</span>
                   <span className="font-bold text-foreground">{total} د.أ</span>

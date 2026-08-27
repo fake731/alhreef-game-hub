@@ -1,10 +1,17 @@
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { ChevronLeft, ChevronRight, Quote, Star, X } from "lucide-react";
+import { BadgeCheck, ChevronLeft, ChevronRight, Maximize2, Quote, Star, X } from "lucide-react";
 import { REVIEW_IMAGES, TESTIMONIALS } from "@/lib/store-data";
 
+const AVATAR_TONES = [
+  "from-[oklch(0.72_0.19_25)] to-[oklch(0.55_0.2_20)]",
+  "from-[oklch(0.86_0.15_92)] to-[oklch(0.7_0.16_60)]",
+  "from-[oklch(0.7_0.13_250)] to-[oklch(0.52_0.15_265)]",
+  "from-[oklch(0.75_0.15_155)] to-[oklch(0.55_0.14_165)]",
+];
+
 export function Reviews({ hideHeader }: { hideHeader?: boolean }) {
-  const [emblaRef, embla] = useEmblaCarousel({ direction: "rtl", align: "start", loop: true });
+  const [emblaRef, embla] = useEmblaCarousel({ direction: "rtl", align: "center", loop: true });
   const [selected, setSelected] = useState(0);
   const [lightbox, setLightbox] = useState<string | null>(null);
 
@@ -76,18 +83,25 @@ export function Reviews({ hideHeader }: { hideHeader?: boolean }) {
                 key={src}
                 type="button"
                 onClick={() => setLightbox(src)}
-                className="card-elevated w-[78%] shrink-0 overflow-hidden rounded-2xl sm:w-[46%] lg:w-[30%]"
+                className={`card-elevated group relative w-[86%] shrink-0 overflow-hidden rounded-2xl transition-[transform,opacity] duration-300 sm:w-[52%] lg:w-[34%] ${
+                  selected === i ? "opacity-100" : "opacity-60 sm:scale-[0.96]"
+                }`}
               >
-                <span className="flex items-center gap-2 border-b border-border px-4 py-3 text-xs font-bold text-muted-foreground">
-                  <Quote className="h-4 w-4 text-accent" />
-                  رأي زبون #{i + 1}
+                <span className="flex items-center justify-between gap-2 border-b border-border px-4 py-3 text-xs font-bold text-muted-foreground">
+                  <span className="flex items-center gap-2">
+                    <Quote className="h-4 w-4 text-accent" />
+                    رأي زبون #{i + 1}
+                  </span>
+                  <Maximize2 className="h-4 w-4 text-accent opacity-0 transition-opacity group-hover:opacity-100" />
                 </span>
-                <img
-                  src={src}
-                  alt={`مراجعة زبون رقم ${i + 1} عن الحريف ستور`}
-                  loading="lazy"
-                  className="h-[420px] w-full bg-surface-2 object-contain"
-                />
+                <span className="block bg-surface-2 p-2">
+                  <img
+                    src={src}
+                    alt={`مراجعة زبون رقم ${i + 1} عن الحريف ستور`}
+                    loading="lazy"
+                    className="mx-auto h-[52vw] max-h-[420px] w-full rounded-xl object-contain sm:h-[380px]"
+                  />
+                </span>
               </button>
             ))}
           </div>
@@ -108,25 +122,41 @@ export function Reviews({ hideHeader }: { hideHeader?: boolean }) {
         </div>
 
         <div className="mt-14 grid gap-4 md:grid-cols-2">
-          {TESTIMONIALS.map((t) => (
-            <article key={t.name} className="card-elevated rounded-2xl p-5">
-              <div className="flex items-center gap-3">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[image:var(--gradient-gold)] text-lg font-extrabold text-gold-foreground">
+          {TESTIMONIALS.map((t, i) => (
+            <article
+              key={t.name}
+              className="card-elevated relative overflow-hidden rounded-2xl p-5 transition-colors hover:border-primary/60"
+            >
+              <Quote className="pointer-events-none absolute -top-2 start-4 h-16 w-16 text-primary/5" />
+              <div className="relative flex items-center gap-3">
+                <span
+                  className={`grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gradient-to-br ${
+                    AVATAR_TONES[i % AVATAR_TONES.length]
+                  } text-lg font-extrabold text-[oklch(0.16_0.015_20)] shadow-[var(--shadow-card)] ring-2 ring-border`}
+                >
                   {t.name.trim().charAt(0)}
                 </span>
-                <div className="min-w-0">
-                  <p className="truncate font-bold">{t.name}</p>
+                <div className="min-w-0 flex-1">
+                  <p className="flex items-center gap-1.5 truncate font-bold">
+                    {t.name}
+                    <BadgeCheck className="h-4 w-4 shrink-0 text-[oklch(0.7_0.13_250)]" />
+                  </p>
                   <p className="text-xs text-muted-foreground">
                     {t.meta} · {t.when}
                   </p>
                 </div>
+                <div
+                  className="flex shrink-0 gap-0.5 text-[oklch(0.84_0.16_85)]"
+                  aria-label="تقييم 5 من 5"
+                >
+                  {Array.from({ length: 5 }).map((_, s) => (
+                    <Star key={s} className="h-4 w-4 fill-current drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]" />
+                  ))}
+                </div>
               </div>
-              <div className="mt-3 flex gap-1 text-accent" aria-label="تقييم 5 من 5">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-current" />
-                ))}
-              </div>
-              <p className="mt-3 text-sm leading-8 text-muted-foreground">{t.text}</p>
+              <p className="relative mt-4 rounded-xl bg-surface-2/60 p-4 text-sm leading-8 text-muted-foreground">
+                {t.text}
+              </p>
             </article>
           ))}
         </div>

@@ -1,19 +1,20 @@
-import ps4Slim from "@/assets/ps4-slim.jpg.asset.json";
-import ps4Pro from "@/assets/ps4-pro.jpg.asset.json";
-import ps4Fat from "@/assets/ps4-fat.jpg.asset.json";
-import ps3 from "@/assets/ps3.jpg.asset.json";
-import ps5FatDigital from "@/assets/ps5-fat-digital.jpg.asset.json";
-import ps5FatDisc from "@/assets/ps5-fat-disc.jpg.asset.json";
-import ps5SlimDigital from "@/assets/ps5-slim-digital.jpg.asset.json";
-import ps5SlimDisc from "@/assets/ps5-slim-disc.jpg.asset.json";
-import logo from "@/assets/logo.jpg.asset.json";
-import review1 from "@/assets/review-1.jpg.asset.json";
-import review2 from "@/assets/review-2.jpg.asset.json";
-import review3 from "@/assets/review-3.jpg.asset.json";
-import review4 from "@/assets/review-4.jpg.asset.json";
-import review5 from "@/assets/review-5.png.asset.json";
+import ps4Slim from "@/assets/ps4-slim.jpg";
+import ps4Pro from "@/assets/ps4-pro.jpg";
+import ps4Fat from "@/assets/ps4-fat.jpg";
+import ps3 from "@/assets/ps3.jpg";
+import ps5FatDigital from "@/assets/ps5-fat-digital.jpg";
+import ps5FatDisc from "@/assets/ps5-fat-disc.jpg";
+import ps5SlimDigital from "@/assets/ps5-slim-digital.jpg";
+import ps5SlimDisc from "@/assets/ps5-slim-disc.jpg";
+import logo from "@/assets/logo.jpg";
+import review1 from "@/assets/review-1.jpg";
+import review2 from "@/assets/review-2.jpg";
+import review3 from "@/assets/review-3.jpg";
+import review4 from "@/assets/review-4.jpg";
+import review5 from "@/assets/review-5.png";
 
-export const LOGO_URL = logo.url;
+export const LOGO_URL = logo;
+
 
 export const WHATSAPP_NUMBER = "962793355255";
 export const WHATSAPP_DISPLAY = "07 9335 5255";
@@ -57,7 +58,7 @@ export const PRODUCTS: Product[] = [
     name: "بلايستيشن 5 سليم ديسك",
     subtitle: "PS 5 SLIM DISC",
     price: 460,
-    image: ps5SlimDisc.url,
+    image: ps5SlimDisc,
     features: ["مكفول سنة", "مع يد", "مع أسلاكه"],
   },
   {
@@ -65,7 +66,7 @@ export const PRODUCTS: Product[] = [
     name: "بلايستيشن 5 سليم ديجيتال",
     subtitle: "PS 5 SLIM DIGITAL",
     price: 440,
-    image: ps5SlimDigital.url,
+    image: ps5SlimDigital,
     features: ["مكفول سنة", "مع يد", "مع أسلاكه"],
   },
   {
@@ -73,7 +74,7 @@ export const PRODUCTS: Product[] = [
     name: "بلايستيشن 5 فات ديسك",
     subtitle: "PS 5 FAT DISC",
     price: 430,
-    image: ps5FatDisc.url,
+    image: ps5FatDisc,
     features: ["مكفول سنة", "مع يد", "مع أسلاكه"],
   },
   {
@@ -81,7 +82,7 @@ export const PRODUCTS: Product[] = [
     name: "بلايستيشن 5 فات ديجيتال",
     subtitle: "PS 5 FAT DIGITAL",
     price: 400,
-    image: ps5FatDigital.url,
+    image: ps5FatDigital,
     features: ["مكفول سنة", "مع يد", "مع أسلاكه"],
   },
   {
@@ -89,7 +90,7 @@ export const PRODUCTS: Product[] = [
     name: "بلايستيشن 4 برو",
     subtitle: "PS 4 PRO",
     price: 170,
-    image: ps4Pro.url,
+    image: ps4Pro,
     features: ["200 لعبة", "مكفول سنة", "مع يد", "مع كيبلاته"],
   },
   {
@@ -97,7 +98,7 @@ export const PRODUCTS: Product[] = [
     name: "بلايستيشن 4 سليم",
     subtitle: "PS 4 SLIM",
     price: 135,
-    image: ps4Slim.url,
+    image: ps4Slim,
     features: ["200 لعبة", "مكفول سنة", "مع يد", "مع كيبلاته"],
   },
   {
@@ -105,7 +106,7 @@ export const PRODUCTS: Product[] = [
     name: "بلايستيشن 4 فات",
     subtitle: "PS 4 FAT",
     price: 115,
-    image: ps4Fat.url,
+    image: ps4Fat,
     features: ["200 لعبة", "مكفول سنة", "مع يد", "مع كيبلاته"],
   },
   {
@@ -113,18 +114,18 @@ export const PRODUCTS: Product[] = [
     name: "بلايستيشن 3",
     subtitle: "PS 3",
     price: 74,
-    image: ps3.url,
+    image: ps3,
     condition: "ألعاب مهداة",
     features: ["ألعاب مهداة", "مع يد", "مع كيبلاته"],
   },
 ];
 
 export const REVIEW_IMAGES = [
-  review5.url,
-  review4.url,
-  review3.url,
-  review2.url,
-  review1.url,
+  review5,
+  review4,
+  review3,
+  review2,
+  review1,
 ];
 
 export type Testimonial = {

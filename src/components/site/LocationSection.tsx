@@ -35,10 +35,12 @@ export function LocationSection({ hideHeader }: { hideHeader?: boolean }) {
               <li className="flex items-start gap-3 rounded-xl border border-border bg-surface p-4">
                 <Clock className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
                 <div className="min-w-0">
-                  <p className="font-bold">للاستفسار عن أوقات الدوام</p>
-                  <p className="text-sm text-muted-foreground">تواصل معنا عبر واتساب في أي وقت.</p>
+                  <p className="font-bold">أوقات الدوام</p>
+                  <p className="text-sm text-muted-foreground">يوميًا من 11 صباحًا حتى 11 مساءً</p>
+                  <p className="text-sm text-muted-foreground">ومن 12 منتصف الليل حتى 1 صباحًا</p>
                 </div>
               </li>
+
             </ul>
 
             <div className="mt-6 flex flex-col gap-2 sm:flex-row">
