@@ -58,7 +58,7 @@ export const PRODUCTS: Product[] = [
     name: "بلايستيشن 5 سليم ديسك",
     subtitle: "PS 5 SLIM DISC",
     price: 460,
-    image: ps5SlimDisc.url,
+    image: ps5SlimDisc,
     features: ["مكفول سنة", "مع يد", "مع أسلاكه"],
   },
   {
@@ -66,7 +66,7 @@ export const PRODUCTS: Product[] = [
     name: "بلايستيشن 5 سليم ديجيتال",
     subtitle: "PS 5 SLIM DIGITAL",
     price: 440,
-    image: ps5SlimDigital.url,
+    image: ps5SlimDigital,
     features: ["مكفول سنة", "مع يد", "مع أسلاكه"],
   },
   {
@@ -74,7 +74,7 @@ export const PRODUCTS: Product[] = [
     name: "بلايستيشن 5 فات ديسك",
     subtitle: "PS 5 FAT DISC",
     price: 430,
-    image: ps5FatDisc.url,
+    image: ps5FatDisc,
     features: ["مكفول سنة", "مع يد", "مع أسلاكه"],
   },
   {
@@ -82,7 +82,7 @@ export const PRODUCTS: Product[] = [
     name: "بلايستيشن 5 فات ديجيتال",
     subtitle: "PS 5 FAT DIGITAL",
     price: 400,
-    image: ps5FatDigital.url,
+    image: ps5FatDigital,
     features: ["مكفول سنة", "مع يد", "مع أسلاكه"],
   },
   {
@@ -90,7 +90,7 @@ export const PRODUCTS: Product[] = [
     name: "بلايستيشن 4 برو",
     subtitle: "PS 4 PRO",
     price: 170,
-    image: ps4Pro.url,
+    image: ps4Pro,
     features: ["200 لعبة", "مكفول سنة", "مع يد", "مع كيبلاته"],
   },
   {
@@ -98,7 +98,7 @@ export const PRODUCTS: Product[] = [
     name: "بلايستيشن 4 سليم",
     subtitle: "PS 4 SLIM",
     price: 135,
-    image: ps4Slim.url,
+    image: ps4Slim,
     features: ["200 لعبة", "مكفول سنة", "مع يد", "مع كيبلاته"],
   },
   {
@@ -106,7 +106,7 @@ export const PRODUCTS: Product[] = [
     name: "بلايستيشن 4 فات",
     subtitle: "PS 4 FAT",
     price: 115,
-    image: ps4Fat.url,
+    image: ps4Fat,
     features: ["200 لعبة", "مكفول سنة", "مع يد", "مع كيبلاته"],
   },
   {
@@ -114,18 +114,18 @@ export const PRODUCTS: Product[] = [
     name: "بلايستيشن 3",
     subtitle: "PS 3",
     price: 74,
-    image: ps3.url,
+    image: ps3,
     condition: "ألعاب مهداة",
     features: ["ألعاب مهداة", "مع يد", "مع كيبلاته"],
   },
 ];
 
 export const REVIEW_IMAGES = [
-  review5.url,
-  review4.url,
-  review3.url,
-  review2.url,
-  review1.url,
+  review5,
+  review4,
+  review3,
+  review2,
+  review1,
 ];
 
 export type Testimonial = {
