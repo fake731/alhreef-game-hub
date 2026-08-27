@@ -16,9 +16,10 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "btn-shine bg-[image:var(--gradient-primary)] text-primary-foreground font-bold shadow-[var(--shadow-glow)] hover:brightness-110",
+        hero: "bg-[image:var(--gradient-primary)] text-primary-foreground font-bold shadow-[var(--shadow-glow)] transition-transform duration-200 hover:-translate-y-0.5 hover:brightness-[1.06]",
         gold: "bg-[image:var(--gradient-gold)] text-gold-foreground font-bold shadow-sm hover:brightness-105",
-        whatsapp: "btn-shine bg-[image:var(--gradient-whatsapp)] text-[oklch(0.16_0.015_20)] font-bold shadow-[var(--shadow-whatsapp)] hover:brightness-110",
+        whatsapp: "bg-[image:var(--gradient-whatsapp)] text-[oklch(0.16_0.015_20)] font-bold shadow-[var(--shadow-whatsapp)] transition-transform duration-200 hover:-translate-y-0.5 hover:brightness-[1.06]",
+
         subtle:
           "border border-border bg-surface-2 text-foreground font-semibold hover:border-primary hover:bg-surface",
       },
