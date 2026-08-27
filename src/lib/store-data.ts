@@ -1,19 +1,20 @@
-import ps4Slim from "@/assets/ps4-slim.jpg.asset.json";
-import ps4Pro from "@/assets/ps4-pro.jpg.asset.json";
-import ps4Fat from "@/assets/ps4-fat.jpg.asset.json";
-import ps3 from "@/assets/ps3.jpg.asset.json";
-import ps5FatDigital from "@/assets/ps5-fat-digital.jpg.asset.json";
-import ps5FatDisc from "@/assets/ps5-fat-disc.jpg.asset.json";
-import ps5SlimDigital from "@/assets/ps5-slim-digital.jpg.asset.json";
-import ps5SlimDisc from "@/assets/ps5-slim-disc.jpg.asset.json";
-import logo from "@/assets/logo.jpg.asset.json";
-import review1 from "@/assets/review-1.jpg.asset.json";
-import review2 from "@/assets/review-2.jpg.asset.json";
-import review3 from "@/assets/review-3.jpg.asset.json";
-import review4 from "@/assets/review-4.jpg.asset.json";
-import review5 from "@/assets/review-5.png.asset.json";
+import ps4Slim from "@/assets/ps4-slim.jpg";
+import ps4Pro from "@/assets/ps4-pro.jpg";
+import ps4Fat from "@/assets/ps4-fat.jpg";
+import ps3 from "@/assets/ps3.jpg";
+import ps5FatDigital from "@/assets/ps5-fat-digital.jpg";
+import ps5FatDisc from "@/assets/ps5-fat-disc.jpg";
+import ps5SlimDigital from "@/assets/ps5-slim-digital.jpg";
+import ps5SlimDisc from "@/assets/ps5-slim-disc.jpg";
+import logo from "@/assets/logo.jpg";
+import review1 from "@/assets/review-1.jpg";
+import review2 from "@/assets/review-2.jpg";
+import review3 from "@/assets/review-3.jpg";
+import review4 from "@/assets/review-4.jpg";
+import review5 from "@/assets/review-5.png";
 
-export const LOGO_URL = logo.url;
+export const LOGO_URL = logo;
+
 
 export const WHATSAPP_NUMBER = "962793355255";
 export const WHATSAPP_DISPLAY = "07 9335 5255";
